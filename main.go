@@ -37,7 +37,7 @@ var rules = map[int]string{
 
 	3: "toda defesa exige um ataque simultâneo",
 
-	4: "a surpresa, a dissimulação e a explosão no ataque são as melhoras armas do krav Maga",
+	4: "a surpresa, a dissimulação e a explosão no ataque são as melhores armas do krav Maga",
 
 	5: "no krav Maga nunca recuamos",
 
@@ -134,23 +134,27 @@ func testNumberNames(includeTens bool) {
 func testRules() {
 	for {
 		res := randItem(rules)
-		input := getInput(fmt.Sprintf("\nNumero: %d\nRegra?: ", res.int))
+		input := getInput(fmt.Sprintf("\nNumero: %d\nRegra?:   -> ", res.int))
 		if input == "0" {
 			return
 		}
+		input = strings.ToLower(input)
 		str := res.string
 		str = strings.ReplaceAll(str, "ê", "e")
 		str = strings.ReplaceAll(str, ",", "")
 		str = strings.ReplaceAll(str, ".", "")
 		str = strings.ReplaceAll(str, "-", "")
 		str = strings.ReplaceAll(str, "é", "e")
+		str = strings.ReplaceAll(str, "á", "a")
 		str = strings.ReplaceAll(str, "ã", "a")
 		str = strings.ReplaceAll(str, "â", "a")
 		str = strings.ReplaceAll(str, "í", "i")
-		if input == strings.ToLower(str) {
+		str = strings.ReplaceAll(str, "ç", "c")
+		str = strings.ToLower(str)
+		if input == str {
 			fmt.Println("Correto ✅")
 		} else {
-			fmt.Println("Errado ❌ -> ", str)
+			fmt.Println("Errado ❌ ->", str)
 		}
 	}
 }
@@ -181,9 +185,11 @@ func getInput(text string) (result string) {
 	result = strings.ReplaceAll(result, ".", "")
 	result = strings.ReplaceAll(result, "-", "")
 	result = strings.ReplaceAll(result, "é", "e")
+	result = strings.ReplaceAll(result, "á", "a")
 	result = strings.ReplaceAll(result, "ã", "a")
 	result = strings.ReplaceAll(result, "â", "a")
 	result = strings.ReplaceAll(result, "í", "i")
+	result = strings.ReplaceAll(result, "ç", "c")
 	// result = strings.ReplaceAll(result, "", "")
 	// result = strings.ReplaceAll(result, "", "")
 
